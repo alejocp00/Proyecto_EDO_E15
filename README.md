@@ -14,11 +14,9 @@
 ### Ejercicio 24, página 132
 
 > Para el problema 24 se requiere una computadora con
-impresora. En este problema de valor inicial utilice el méto-
-do de Euler mejorado con tamaños de paso h = 0.1, 0.02,
+impresora. En este problema de valor inicial utilice el método de Euler mejorado con tamaños de paso h = 0.1, 0.02,
 0.004 y 0.0008 para aproximar con 5 cifras decimales el valor
-de la solución en 10 puntos igualmente espaciados del interva-
-lo dado. Imprima los resultados en forma tabular con los en-
+de la solución en 10 puntos igualmente espaciados del intervalo dado. Imprima los resultados en forma tabular con los en-
 cabezados apropiados para facilitar la comparación del efecto
 de variar el tamaño de paso h. Las primas representan deriva-
 das con respecto a x.
