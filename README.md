@@ -1,4 +1,4 @@
-# Proyecto_EDO_E15
+# Proyecto EDO E15
 
 ## Integrantes
 
