@@ -16,10 +16,8 @@
 > Para el problema se requiere una computadora con
 impresora. En este problema de valor inicial utilice el método de Euler mejorado con tamaños de paso h = 0.1, 0.02,
 0.004 y 0.0008 para aproximar con 5 cifras decimales el valor
-de la solución en 10 puntos igualmente espaciados del intervalo dado. Imprima los resultados en forma tabular con los en-
-cabezados apropiados para facilitar la comparación del efecto
-de variar el tamaño de paso h. Las primas representan deriva-
-das con respecto a x.
+de la solución en 10 puntos igualmente espaciados del intervalo dado. Imprima los resultados en forma tabular con los encabezados apropiados para facilitar la comparación del efecto
+de variar el tamaño de paso h. Las primas representan derivadas con respecto a x.
 >
 > - $y'= \frac{x}{1+y²}=1;-1 \leq x \leq 1$
 
