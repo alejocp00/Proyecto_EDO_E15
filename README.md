@@ -47,5 +47,5 @@ A_{sub}
 $$
 
 ## Informe
-
+El presente proyecto propone tres implementaciones computacionales de los siguientes métodos para aproxiar soluciones de Ecuaciones Diferenciales: Método de Euler, Método de Euler Mejorado y Método de Runge-Kutta.
 
