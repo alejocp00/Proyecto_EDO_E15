@@ -46,13 +46,13 @@ A_{sub}
 \frac{Numerador}{Denominador}
 $$
 
-## Informe
+# Informe
 
-### Aspectos Generales
+## Aspectos Generales
 
 El presente proyecto propone tres implementaciones computacionales de los siguientes métodos para aproximar soluciones de Ecuaciones Diferenciales: Método de Euler, Método de Euler Mejorado y   git config --global user.email Método de Runge-Kutta. Para ello se han aprovechado las facilidades que brinda el lenguaje de programación Python y dos de sus bibliotecas: pandas y prettytable.
 
-### Implementación
+## Implementación
 
 En la primera sección de código se presentan métodos y variables globales que serán usadas a lo largo del proyecto.
 La variable "Epsilon" es una constante muy pequeña que servirá como apoyo para realizar operaciones de comparación de forma correcta.
@@ -60,7 +60,7 @@ Los métodos "Equal_To", "Great_Than" y "Less_Than" son métodos de comparación
 
 A continuación se presentan las implementaciones de los tres métodos de aproximación ya presentados.
 
-#### Método de Euler
+### Método de Euler
 
 El Método de Euler recibe diferentes parámetros que intervendrán en su funcionamiento, como lo es, la función que se quiere aproximar, valores iniciales de las variables x e y, el máximo del intervalo donde se hará la aproximación y dos varibales h y d que representan el tamaño de paso fijo (que será usado en cada paso) y el número de decimales al que será redondeado el valor resultante, respectivamente.
 
@@ -73,7 +73,7 @@ $$
 
 Finalmente se devuelven los resultados obtenidos en una lista de tuplas de la forma (x,y) que representan el valor de y en cada x.
 
-#### Método de Euler mejorado
+### Método de Euler mejorado
 
 El Método de Euler mejorado es similar al Método de Euler, anteriormente visto, pero resulta ser más preciso que su predecesor.
 Recibe como parámetros la función que se quiere aproximar, los valores iniciales de x e y, el máximo valor de x que se quiere aproximar, el tamaño de paso fijo y la cantidad de decimales a los que será redondeado el valor resultante.
@@ -86,9 +86,11 @@ k_2=f(x_{n+1},u_{n+1})\\
 y_{n+1}=y_n+h*\frac{1}{2}(k_1+k_2)
 $$
 
+Si se toma $k=\frac{k_1+k_2}{2}$ la ecuación toma la forma del método de Euler.
+
 Finalmente se devuelven los valores en una lista de tuplas de la forma (x,y).
 
-#### Método de Runge-Kutta
+### Método de Runge-Kutta
 
 El Método de Runge-Kutta es el más preciso de los métodos presentados y el más usado en la práctica. En la implementación propuesta, el método recibe una función f, que será la función que se estará trabajando, valores iniciales de x e y, así como el máximo x del intervalo y dos valores h y d que representan el tamaño de paso fijo entre punto y punto, y la cantidad de decimales a redondear el valor resultante, respectivamente.
 
@@ -117,3 +119,14 @@ Luego se utiliza la siguiente fórmula para calcular cada una de las aproximacio
 $$
 y_{n+1}=y_n + \frac{h}{6}(k_1+2k_2+2k_3+k_4)
 $$
+
+Luego, si se toma $k=\frac{1}{6}(k_1+2k_2+2k_3+k_4)$ la ecuación toma la forma usada en el método de Euler.
+
+### Métodos Auxiliares
+
+En esta sección figuran los métodos Calculate_Values, Print_Table y Print_Deer_Info.
+
+El método Calculate_Values sirve de puente entre los datos y el propio método de aproximación que se utilizará. El método recibe los siguientes parámetros: la función con la que se estará trabajando, el método que se utilizará, los valores mínimo y máximo de x, así como el valor inicial de y; una lista de los diferentes tamaños de paso fijo (h) que se estarán considerando y la cantidad de decimales a redondear.
+Se devuelve una lista que contiene los valores obtenidos, usando el método especificado, para cada una de los diferentes valores del tamaño de paso fijo (h).
+
+El método Print_Table es el visualizador de los resultados obtenidos al aplicar uno de los métodos de aproximación a una función. Con la ayuda de la biblioteca de Python prettyTable, se logra imprimir una tabla donde quedan reflejados los valores de x e y.
