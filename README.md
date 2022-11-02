@@ -1,4 +1,4 @@
-# Proyecto EDO E15
+# Informe
 
 ## Integrantes
 
@@ -6,47 +6,6 @@
 - Carlos Arturo Pérez Cabrera
 - Diana Laura Pérez Trujillo
 - David Sánchez Iglesias
-
-### Resumen MarkDown
-
-Esto es *cursiva*
-
-Esto es **bold**
-
-Esto es algo
-
-Lo de abajo es una linea
-
----
-
-|$x$|$y_1$|$y_2$|
-|:---:|:---:|:---:|
-|1|2|3
-|4|25|6|
-
->
-> Quote
->
-> MuliLine Quote
-
-- List
-- Of
-- Lements
-
-1. Numeral
-2. List
-3. Of
-4. Elements
-   1. With
-   2. diferents
-   3. levels
-
-$$
-A_{sub}
-\frac{Numerador}{Denominador}
-$$
-
-# Informe
 
 ## Aspectos Generales
 
@@ -124,9 +83,100 @@ Luego, si se toma $k=\frac{1}{6}(k_1+2k_2+2k_3+k_4)$ la ecuación toma la forma 
 
 ### Métodos Auxiliares
 
-En esta sección figuran los métodos Calculate_Values, Print_Table y Print_Deer_Info.
+En esta sección figuran los métodos Calculate_Values y Print_Table.
 
 El método Calculate_Values sirve de puente entre los datos y el propio método de aproximación que se utilizará. El método recibe los siguientes parámetros: la función con la que se estará trabajando, el método que se utilizará, los valores mínimo y máximo de x, así como el valor inicial de y; una lista de los diferentes tamaños de paso fijo (h) que se estarán considerando y la cantidad de decimales a redondear.
 Se devuelve una lista que contiene los valores obtenidos, usando el método especificado, para cada una de los diferentes valores del tamaño de paso fijo (h).
 
 El método Print_Table es el visualizador de los resultados obtenidos al aplicar uno de los métodos de aproximación a una función. Con la ayuda de la biblioteca de Python prettyTable, se logra imprimir una tabla donde quedan reflejados los valores de x e y.
+
+## Ejercicios y resultados
+
+### Ejercicio 24, página 132
+
+Para el problema se requiere una computadora con
+impresora. En este problema de valor inicial utilice el método de Euler mejorado con tamaños de paso h = 0.1, 0.02,
+0.004 y 0.0008 para aproximar con 5 cifras decimales el valor
+de la solución en 10 puntos igualmente espaciados del intervalo dado. Imprima los resultados en forma tabular con los encabezados apropiados para facilitar la comparación del efecto
+de variar el tamaño de paso h. Las primas representan derivadas con respecto a x.
+
+  $y'= \frac{x}{1+y²},y(-1)=1;-1 \leq x \leq 1$
+
+#### Resultados método Euler
+
+| x | y(h=0.1) | y(h=0.02) | y(h=0.004) | y(h=0.0008) |
+|:---:|:---:|:---:|:---:|:---:|
+| -1.0 | 1 | 1 | 1 | 1 |
+| -0.8 | 0.90572 | 0.90569 | 0.90219 | 0.90149 |
+| -0.6 | 0.82574 | 0.82569 | 0.82285 | 0.82229 |
+| -0.4 | 0.76449 | 0.76443 | 0.76243 | 0.76204 |
+| -0.2 | 0.72593 | 0.72586 | 0.72483 | 0.72463 |
+| 0.0 | 0.71276 | 0.71268 | 0.7127 | 0.71271 |
+| 0.2 | 0.72595 | 0.72586 | 0.72692 | 0.72714 |
+| 0.4 | 0.76453 | 0.76443 | 0.76647 | 0.76688 |
+| 0.6 | 0.82579 | 0.82569 | 0.82856 | 0.82914 |
+| 0.8 | 0.90578 | 0.90569 | 0.90922 | 0.90993 |
+| 1.0 | 1.00006 | 1.0 | 1.0 | 1.0 |
+
+### Ejercicio 24, Página 142
+
+Para el problema se requiere una computadora con
+impresora. En estos problemas de valor inicial utilice el méto-
+do de Runge-Kutta con tamaños de paso h = 0.2 , 01, 0.05 y
+0.025 para aproximar a 6 cifras decimales los valores de la
+solución en 5 puntos igualmente espaciados del intervalo
+dado. Imprima los resultados en forma tabular con un enca-
+bezado apropiado que facilite la comparación del efecto de
+variar el tamaño de paso h. Las primas representan derivadas
+con respecto a x.
+
+$y'= \frac{x}{1+y²},y(-1)=1;-1 \leq x \leq 1$
+
+#### Resultados método Runge-Kutta
+
+| x | y(h=0.2) | y(h=0.1) | y(h=0.05) | y(h=0.025) |
+|---|----------|----------|-----------|------------|
+| -1.0 | 1 | 1 | 1 | 1 |
+| -0.6 | 0.82569 | 0.825691 | 0.825691 | 0.825691 |
+| -0.2 | 0.725856 | 0.725856 | 0.725857 | 0.725857 |
+| 0.2 | 0.725856 | 0.725856 | 0.725857 | 0.725857 |
+| 0.6 | 0.82569 | 0.825691 | 0.825691 | 0.825691 |
+| 1.0 | 1 | 1 | 1 | 1 |
+
+### Ejercicio 26, página 132
+
+Suponga que
+en un pequeño bosque la población de venados P(t) inicialmente es de 25 individuos y satisface la ecuación
+logística  
+
+$\frac{dP}{dt} = 0.0225P − 0.0003P²$  
+
+(con t en meses). Utilice el método de Euler con
+una calculadora programable o una computadora para aproximar la solución a 10 años, primero con un tamaño de paso h = 1 y después con h = 0.5, redondeando
+los valores aproximados de P a números enteros de venados. ¿Qué
+porcentaje de la población límite de 75 venados se obtiene
+después de 5 años? ¿Después de 10 años?
+
+#### Resultados
+
+| x | y(h=1) | y(h=0.5) |
+|---|--------|----------|
+| 0.0 | 25 | 25 |
+| 10.0 | 29 | 29 |
+| 20.0 | 33 | 33 |
+| 30.0 | 37 | 37 |
+| 40.0 | 41 | 41 |
+| 50.0 | 45 | 45 |
+| 60.0 | 49 | 49 |
+| 70.0 | 53 | 53 |
+| 80.0 | 56 | 56 |
+| 90.0 | 59 | 59 |
+| 100.0 | 62 | 62 |
+| 110.0 | 64 | 64 |
+| 120.0 | 66 | 66 |
+
+- Población de ciervos en $5$ años: $49$
+- Porcentaje de población de ciervos en $5$ años con respecto a $75: 65.33%$
+
+- Población de ciervos en $10$ años: $66$
+- Porcentaje de población de ciervos en 10 años con respecto a $75: 88.0%\$
