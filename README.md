@@ -43,8 +43,14 @@ El Método de Euler mejorado es similar al Método de Euler, anteriormente visto
 Recibe como parámetros la función que se quiere aproximar, los valores iniciales de x e y, el máximo valor de x que se quiere aproximar, el tamaño de paso fijo y la cantidad de decimales a los que será redondeado el valor resultante.
 
 El procedimiento se realiza como sigue:
-$$k_1=f(x_n,y_n) \\ u_{n+1}= y_n + h*k_1 \\ k_2=f(x_{n+1},u_{n+1}) \\
-y_{n+1}=y_n+h*\frac{1}{2}(k_1+k_2)$$
+
+$$k_1=f(x_n,y_n)$$
+
+$$u_{n+1}= y_n + h*k_1$$
+
+$$k_2=f(x_{n+1},u_{n+1})$$
+
+$$y_{n+1}=y_n+h*\frac{1}{2}(k_1+k_2)$$
 
 Si se toma $k=\frac{k_1+k_2}{2}$ la ecuación toma la forma del método de Euler. Finalmente se devuelven los valores en una lista de tuplas de la forma (x,y).
 
@@ -54,7 +60,13 @@ El Método de Runge-Kutta es el más preciso de los métodos presentados y el m�
 
 El trabajo con el método se realiza de la siguiente manera:
 
-$$k_1=f(x_n,y_n) \\ \enspace       \\ k_2=f(x_n+\frac{1}{2}h, y_n+\frac{1}{2}hk_1) \\ \enspace       \\ k_3=f(x_n+\frac{1}{2}h, y_n+\frac{1}{2}hk_2) \\ \enspace       \\ k_4=f(x_{n+1},y_n+hk_3)$$
+$$k_1=f(x_n,y_n)$$
+
+$$k_2=f(x_n+\frac{1}{2}h, y_n+\frac{1}{2}hk_1)$$
+
+$$k_3=f(x_n+\frac{1}{2}h, y_n+\frac{1}{2}hk_2)$$
+
+$$k_4=f(x_{n+1},y_n+hk_3)$$
 
 Donde:
 
@@ -65,7 +77,7 @@ Donde:
 
 Luego se utiliza la siguiente fórmula para calcular cada una de las aproximaciones.
 
-$y_{n+1}=y_n + \frac{h}{6}(k_1+2k_2+2k_3+k_4)$
+$$y_{n+1}=y_n + \frac{h}{6}(k_1+2k_2+2k_3+k_4)$$
 
 Si se toma $k=\frac{1}{6}(k_1+2k_2+2k_3+k_4)$ la ecuación toma la forma usada en el método de Euler.
 
@@ -90,7 +102,7 @@ Para el problema se requiere una computadora con
 impresora. En este problema de valor inicial utilice el método de Euler mejorado con tamaños de paso h = 0.1, 0.02,
 0.004 y 0.0008 para aproximar con 5 cifras decimales el valor de la solución en 10 puntos igualmente espaciados del intervalo dado. Imprima los resultados en forma tabular con los encabezados apropiados para facilitar la comparación del efecto de variar el tamaño de paso h. Las primas representan derivadas con respecto a x.
 
-$y'= \frac{x}{1+y²},y(-1)=1;-1 \leq x \leq 1$
+$$y'= \frac{x}{1+y²},y(-1)=1;-1 \leq x \leq 1$$
 
 #### Resultados método Euler mejorado
 
@@ -113,7 +125,7 @@ $y'= \frac{x}{1+y²},y(-1)=1;-1 \leq x \leq 1$
 Para el problema se requiere una computadora con
 impresora. En estos problemas de valor inicial utilice el método de Runge-Kutta con tamaños de paso h = 0.2 , 0.1, 0.05 y 0.025 para aproximar a 6 cifras decimales los valores de la solución en 5 puntos igualmente espaciados del intervalo dado. Imprima los resultados en forma tabular con un encabezado apropiado que facilite la comparación del efecto de variar el tamaño de paso h. Las primas representan derivadas con respecto a x.
 
-$y'= \frac{x}{1+y²},y(-1)=1;-1 \leq x \leq 1$
+$$y'= \frac{x}{1+y²},y(-1)=1;-1 \leq x \leq 1$$
 
 #### Resultados método Runge-Kutta
 
@@ -130,7 +142,7 @@ $y'= \frac{x}{1+y²},y(-1)=1;-1 \leq x \leq 1$
 
 Suponga que en un pequeño bosque la población de venados P(t) inicialmente es de 25 individuos y satisface la ecuación logística  
 
-$\frac{dP}{dt} = 0.0225P − 0.0003P²$  
+$$\frac{dP}{dt} = 0.0225P − 0.0003P²$$  
 
 (con t en meses). Utilice el método de Euler con
 una calculadora programable o una computadora para aproximar la solución a 10 años, primero con un tamaño de paso h = 1 y después con h = 0.5, redondeando los valores aproximados de P a números enteros de venados. ¿Qué porcentaje de la población límite de 75 venados se obtiene
