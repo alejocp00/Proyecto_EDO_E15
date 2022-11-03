@@ -31,10 +31,7 @@ Los métodos `Equal_To(a,b)`, `Great_Than(a,b)` y `Less_Than(a,b)` son métodos 
 
 El Método de Euler recibe diferentes parámetros que intervendrán en su funcionamiento, como lo es, la función que se quiere aproximar, valores iniciales de las variables x e y, el máximo del intervalo donde se hará la aproximación y dos varibales h y d que representan el tamaño de paso fijo (que será usado en cada paso) y el número de decimales al que será redondeado el valor resultante, respectivamente. La implementación del método utiliza la siguiente idea:
 
-$$
-x_{n+1}=x_n + h\\
-y_{n+1}=y_n + h*f(x_n,y_n)
-$$
+$$x_{n+1}=x_n + h \\ y_{n+1}=y_n + h*f(x_n,y_n)$$
 
 Finalmente se devuelven los resultados obtenidos en una lista de tuplas de la forma (x,y) que representan el valor de y en cada x.
 
@@ -44,12 +41,8 @@ El Método de Euler mejorado es similar al Método de Euler, anteriormente visto
 Recibe como parámetros la función que se quiere aproximar, los valores iniciales de x e y, el máximo valor de x que se quiere aproximar, el tamaño de paso fijo y la cantidad de decimales a los que será redondeado el valor resultante.
 
 El procedimiento se realiza como sigue:
-$$
-k_1=f(x_n,y_n) \\
-u_{n+1}= y_n + h*k_1 \\
-k_2=f(x_{n+1},u_{n+1}) \\
-y_{n+1}=y_n+h*\frac{1}{2}(k_1+k_2)
-$$
+$$k_1=f(x_n,y_n) \\ u_{n+1}= y_n + h*k_1 \\ k_2=f(x_{n+1},u_{n+1}) \\
+y_{n+1}=y_n+h*\frac{1}{2}(k_1+k_2)$$
 
 Si se toma $k=\frac{k_1+k_2}{2}$ la ecuación toma la forma del método de Euler. Finalmente se devuelven los valores en una lista de tuplas de la forma (x,y).
 
@@ -59,13 +52,7 @@ El Método de Runge-Kutta es el más preciso de los métodos presentados y el m�
 
 El trabajo con el método se realiza de la siguiente manera:
 
-$$k_1=f(x_n,y_n) \\
-\enspace       \\
-k_2=f(x_n+\frac{1}{2}h, y_n+\frac{1}{2}hk_1) \\
-\enspace       \\
-k_3=f(x_n+\frac{1}{2}h, y_n+\frac{1}{2}hk_2) \\
-\enspace       \\
-k_4=f(x_{n+1},y_n+hk_3)$$
+$$k_1=f(x_n,y_n) \\ \enspace       \\ k_2=f(x_n+\frac{1}{2}h, y_n+\frac{1}{2}hk_1) \\ \enspace       \\ k_3=f(x_n+\frac{1}{2}h, y_n+\frac{1}{2}hk_2) \\ \enspace       \\ k_4=f(x_{n+1},y_n+hk_3)$$
 
 Donde:
 
