@@ -59,15 +59,14 @@ El Método de Runge-Kutta es el más preciso de los métodos presentados y el m�
 
 El trabajo con el método se realiza de la siguiente manera:
 
-$$
-k_1=f(x_n,y_n) \\
+$$k_1=f(x_n,y_n) \\
 \enspace       \\
 k_2=f(x_n+\frac{1}{2}h, y_n+\frac{1}{2}hk_1) \\
 \enspace       \\
 k_3=f(x_n+\frac{1}{2}h, y_n+\frac{1}{2}hk_2) \\
 \enspace       \\
-k_4=f(x_{n+1},y_n+hk_3)
-$$
+k_4=f(x_{n+1},y_n+hk_3)$$
+
 Donde:
 
 - $k_1:$ es la pendiente del método de Euler en $x_n$
@@ -76,9 +75,8 @@ Donde:
 - $k_4:$ La pendiente en el método de Euler en el punto $x_{n+1}$, utilizando la pendiente mejorada $k_3$ en el punto medio para pasar a $x_{n+1}$.
 
 Luego se utiliza la siguiente fórmula para calcular cada una de las aproximaciones.
-$$
-y_{n+1}=y_n + \frac{h}{6}(k_1+2k_2+2k_3+k_4)
-$$
+
+$y_{n+1}=y_n + \frac{h}{6}(k_1+2k_2+2k_3+k_4)$
 
 Si se toma $k=\frac{1}{6}(k_1+2k_2+2k_3+k_4)$ la ecuación toma la forma usada en el método de Euler.
 
@@ -103,7 +101,7 @@ Para el problema se requiere una computadora con
 impresora. En este problema de valor inicial utilice el método de Euler mejorado con tamaños de paso h = 0.1, 0.02,
 0.004 y 0.0008 para aproximar con 5 cifras decimales el valor de la solución en 10 puntos igualmente espaciados del intervalo dado. Imprima los resultados en forma tabular con los encabezados apropiados para facilitar la comparación del efecto de variar el tamaño de paso h. Las primas representan derivadas con respecto a x.
 
-  $y'= \frac{x}{1+y²},y(-1)=1;-1 \leq x \leq 1$
+$y'= \frac{x}{1+y²},y(-1)=1;-1 \leq x \leq 1$
 
 #### Resultados método Euler mejorado
 
