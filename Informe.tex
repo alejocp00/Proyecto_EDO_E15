@@ -1,0 +1,300 @@
+\documentclass[a4paper.10pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{cancel}
+\usepackage{lineno,hyperref}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{vmargin}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{wrapfig}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xparse}
+\usepackage{emptypage}
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+
+% Custom colors
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+\usepackage{listings}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+morekeywords={self},              % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false
+}}
+
+
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\pythonexternal[2][]{{
+\pythonstyle
+\lstinputlisting[#1]{#2}}}
+
+% Python for inline
+\newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
+
+\title
+    {
+        \begin{center}
+            \huge\bfseries Informe del proyecto de EDO
+        \end{center}
+    }
+\author
+    {
+        Alejandro Camacho P\'erez\\
+        \and
+        Carlos Arturo P\'erez Cabrera\\
+        \and
+        Diana Laura P\'erez Trujillo\\
+        \and
+        David S\'anchez Iglesias
+    }
+\date{}
+
+\begin{document}
+\maketitle
+\section{Aspectos Generales}
+
+El presente proyecto propone tres implementaciones computacionales de los siguientes m\'etodos para aproximar soluciones de Ecuaciones Diferenciales con valor inicial:
+
+\begin{itemize}
+    \item M\'etodo de Euler \\
+    \item M\'etodo de Euler mejorado \\
+    \item M\'etodo de Runge-Kutta
+\end{itemize}
+
+Para ello se han aprovechado las facilidades que brinda el lenguaje de programaci\'on Python y varias de sus bibliotecas:
+
+\begin{itemize}
+    \item \pythoninline{prettytable} (para visualizar los resultados)
+    \item \pythoninline{enum} (para mayor organizaci\'on a la hora de seleccionar los m\'etodos)
+    \item \pythoninline{collections.abc} (para un mejor comentado de los m\'etodos)
+\end{itemize}
+
+\section{Implementaci\'on}
+En la primera secci\'on de c\'odigo se presentan m\'etodos y variables globales que ser\'an usadas a lo largo del proyecto.
+La variable \pythoninline{EPSILON} es una constante muy peque\~na que servir\'a como apoyo para realizar operaciones de comparaci\'on de forma correcta.
+Los m\'etodos \pythoninline{Equal\_To(a,b)}, \pythoninline{Great\_Than(a,b)} y \pythoninline{Less\_Than(a,b)} son m\'etodos de comparaci\'on: igual que, mayor que y menor que, respectivamente. Dichos m\'etodos fueron implementados de manera manual para evitar los posibles errores que trae consigo trabajar con n\'umeros flotantes en computadoras.
+A continuaci\'on se presentan las implementaciones de los tres m\'etodos de aproximaci\'on ya presentados.
+
+\subsection{M\'etodo de Euler}
+El M\'etodo de Euler recibe diferentes par\'ametros que intervendr\'an en su funcionamiento, como lo es, la funci\'on que se quiere aproximar, valores iniciales de las variables x e y, el m\'aximo del intervalo donde se har\'a la aproximaci\'on y dos varibales h y d que representan el tama\~no de paso fijo (que ser\'a usado en cada paso) y el n\'umero de decimales al que ser\'a redondeado el valor resultante, respectivamente.
+La implementaci\'on del m\'etodo utiliza la siguiente idea:
+
+\begin{equation*}
+    \begin{aligned}
+         & x_{n+1}=x_n + h            \\
+         & y_{n+1}=y_n + h*f(x_n,y_n)
+    \end{aligned}
+\end{equation*}
+
+Finalmente se devuelven los resultados obtenidos en una lista de tuplas de la forma $(x,y)$ que representan el valor de y en cada x.
+
+\subsection{M\'etodo de Euler mejorado}
+
+El M\'etodo de Euler mejorado es similar al M\'etodo de Euler, anteriormente visto, pero resulta ser m\'as preciso que su predecesor.
+Recibe como par\'ametros la funci\'on que se quiere aproximar, los valores iniciales de x e y, el m\'aximo valor de x que se quiere aproximar, el tama\~no de paso fijo y la cantidad de decimales a los que ser\'a redondeado el valor resultante.
+
+El procedimiento se realiza como sigue:
+
+\begin{equation*}
+    \begin{aligned}
+         & k_1=f(x_n,y_n)                     \\
+         & u_{n+1}= y_n + h*k_1               \\
+         & k_2=f(x_{n+1},u_{n+1})             \\
+         & y_{n+1}=y_n+h*\frac{1}{2}(k_1+k_2)
+    \end{aligned}
+\end{equation*}
+
+Si se toma $k=\frac{k_1+k_2}{2}$ la ecuaci\'on toma la forma del m\'etodo de Euler
+
+Finalmente se devuelven los valores en una lista de tuplas de la forma $(x,y)$.
+
+
+
+\subsection{M\'etodo de Runge-Kutta}
+
+El M\'etodo de Runge-Kutta es el m\'as preciso de los m\'etodos presentados y el m\'as usado en la pr\'actica. En la implementaci\'on propuesta, el m\'etodo recibe una funci\'on f, que ser\'a la funci\'on que se estar\'a trabajando, valores iniciales de x e y, as\'i como el m\'aximo x del intervalo y dos valores h y d que representan el tama\~no de paso fijo entre punto y punto, y la cantidad de decimales a redondear el valor resultante, respectivamente.
+El trabajo con el m\'etodo se realiza de la siguiente manera:
+
+\begin{equation*}
+    \begin{aligned}
+         & k_1=f(x_n,y_n)                               \\
+         & k_2=f(x_n+\frac{1}{2}h, y_n+\frac{1}{2}hk_1) \\
+         & k_3=f(x_n+\frac{1}{2}h, y_n+\frac{1}{2}hk_2) \\
+         & k_4=f(x_{n+1},y_n+hk_3)
+    \end{aligned}
+\end{equation*}
+
+
+Donde:
+\begin{itemize}
+    \item $k_1:$ es la pendiente del m\'etodo de Euler en $x_n$. \\
+    \item $k_2:$ estimaci\'on de la pendiente en el punto medio del intervalo [$x_n,x_{n+1}$] utilizando el m\'etodo de Euler para predecir la ordenada en ese punto. \\
+    \item $k_3:$ valor del m\'etodo de Euler mejorado para la pendiente en el punto medio. \\
+    \item $k_4:$ La pendiente en el m\'etodo de Euler en el punto $x_{n+1}$, utilizando la pendiente mejorada $k_3$ en el punto medio para pasar a $x_{n+1}$.
+\end{itemize}
+
+Luego se utiliza la siguiente f\'ormula para calcular cada una de las aproximaciones.
+
+\begin{equation*}
+    \begin{aligned}
+        y_{n+1}=y_n + \frac{h}{6}(k_1+2k_2+2k_3+k_4)
+    \end{aligned}
+\end{equation*}
+
+
+Si se toma $k=\frac{1}{6}(k_1+2k_2+2k_3+k_4)$ la ecuaci\'on toma la forma usada en el m\'etodo de Euler.
+
+
+\section{M\'etodos Auxiliares}
+
+En esta secci\'on figuran los m\'etodos \pythoninline{Calculate\_Values(*args)}, \pythoninline{Print\_Table(*args)} y \pythoninline{Print\_Deer\_Info(*args)}.
+\begin{itemize}
+    \item \pythoninline{Calculate\_Values} sirve de puente entre los datos y el propio m\'etodo de aproximaci\'on que se utilizar\'a. El m\'etodo recibe los siguientes par\'ametros: la funci\'on con la que se estar\'a trabajando, el m\'etodo que se utilizar\'a, los valores m\'inimo y m\'aximo de x, as\'i como el valor inicial de y, una lista de los diferentes tama\~nos de paso fijo (h) que se estar\'an considerando y la cantidad de decimales a redondear. Se devuelve una lista que contiene los valores obtenidos, usando el m\'etodo especificado, para cada una de los diferentes valores del tama\~no de paso fijo (h). \\
+    \item \pythoninline{Print\_Table} es el visualizador de los resultados obtenidos al aplicar uno de los m\'etodos de aproximaci\'on a una funci\'on. Con la ayuda de la biblioteca de Python \pythoninline{prettyTable}, se logra imprimir una tabla donde quedan reflejados los valores de x e y. \\
+    \item \pythoninline{Print\_Deer\_Info} se encarga de imprimir toda la informaci\'on particular relacionada con el ejercicio 26 p\'agina 122.
+\end{itemize}
+
+\section{Ejercicios y resultados}
+En esta secci\'on se muestran los resultados obtenidos al aplicar los m\'etodos de aproximaci\'on a las funciones dadas en el libro de texto.
+
+\subsection{Ejercicio 24 p\'agina 132}
+Para el problema se requiere una computadora con impresora. En este problema de valor inicial utilice el m\'etodo de Euler mejorado con tama\~nos de paso h = 0.1, 0.02, 0.004 y 0.0008 para aproximar con 5 cifras decimales el valor de la soluci\'on en 10 puntos igualmente espaciados del intervalo dado. Imprima los resultados en forma tabular con los encabezados apropiados para facilitar la comparaci\'on del efecto de variar el tama\~no de paso h. Las primas representan derivadas con respecto a x.
+\begin{equation*}
+    \begin{aligned}
+        y'= \frac{x}{1+y^{2}},y(-1)=1;-1 \leq x \leq 1
+    \end{aligned}
+\end{equation*}
+
+
+\subsubsection{Resultados m\'etodo Euler mejorado}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        x    & y(h=0.1) & y(h=0.02) & y(h=0.004) & y(h=0.0008) \\
+        \hline
+        -1.0 & 1        & 1         & 1          & 1           \\
+        -0.8 & 0.90572  & 0.90569   & 0.90569    & 0.90569     \\
+        -0.6 & 0.82574  & 0.82569   & 0.82569    & 0.82569     \\
+        -0.4 & 0.76449  & 0.76443   & 0.76443    & 0.76443     \\
+        -0.2 & 0.72593  & 0.72586   & 0.72586    & 0.72586     \\
+        0.0  & 0.71276  & 0.71268   & 0.71268    & 0.71268     \\
+        0.2  & 0.72595  & 0.72586   & 0.72586    & 0.72586     \\
+        0.4  & 0.76453  & 0.76443   & 0.76443    & 0.76443     \\
+        0.6  & 0.82579  & 0.82569   & 0.82569    & 0.82569     \\
+        0.8  & 0.90578  & 0.90569   & 0.90569    & 0.90569     \\
+        1.0  & 1.00006  & 1.0       & 1.0        & 1.0         \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Ejercicio 24 p\'agina 142}
+Para el problema se requiere una computadora con impresora. En estos problemas de valor inicial utilice el m\'etodo de Runge-Kutta con tama\~nos de paso h = 0.2 , 01, 0.05 y 0.025 para aproximar a 6 cifras decimales los valores de la soluci\'on en 5 puntos igualmente espaciados del intervalo dado. Imprima los resultados en forma tabular con un encabezado apropiado que facilite la comparaci\'on del efecto de variar el tama\~no de paso h. Las primas representan derivadas con respecto a x.
+
+\begin{equation*}
+    \begin{aligned}
+        y'= \frac{x}{1+y^{2}},y(-1)=1;-1 \leq x \leq 1
+    \end{aligned}
+\end{equation*}
+
+% \newpage
+
+\subsubsection{Resultados m\'etodo Runge-Kutta}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        x    & y(h=0.2) & y(h=0.1) & y(h=0.05) & y(h=0.025) \\
+        \hline
+        -1.0 & 1        & 1        & 1         & 1          \\
+        -0.6 & 0.82569  & 0.825691 & 0.825691  & 0.825691   \\
+        -0.2 & 0.725856 & 0.725856 & 0.725857  & 0.725857   \\
+        0.2  & 0.725856 & 0.725856 & 0.725857  & 0.725857   \\
+        0.6  & 0.82569  & 0.825691 & 0.825691  & 0.825691   \\
+        1.0  & 1.0      & 1.0      & 1.0       & 1.0        \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Ejercicio 26 p\'agina 122}
+
+Suponga que en un peque\~no bosque la poblaci\'on de venados P(t) inicialmente es de 25 individuos y satisface la ecuaci\'on log\'istica
+
+\begin{equation*}
+    \begin{aligned}
+        \frac{dP}{dt} = 0.0225P - 0.0003P^{2}
+    \end{aligned}
+\end{equation*}
+
+(con t en meses). Utilice el m\'etodo de Euler con una calculadora programable o una computadora para aproximar la soluci\'on a 10 a\~nos, primero con un tama\~no de paso h = 1 y despu\'es con h = 0.5, redondeando los valores aproximados de P a n\'umeros enteros de venados. ¿Qu\'e porcentaje de la poblaci\'on l\'imite de 75 venados se obtiene despu\'es de 5 a\~nos? ¿Despu\'es de 10 a\~nos?
+
+\subsubsection{Resultados m\'etodo Euler}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        x     & y(h=1) & y(h=0.5) \\
+        \hline
+        0.0   & 25     & 25       \\
+        10.0  & 29.0   & 29.0     \\
+        20.0  & 33.0   & 33.0     \\
+        30.0  & 37.0   & 37.0     \\
+        40.0  & 41.0   & 41.0     \\
+        50.0  & 45.0   & 45.0     \\
+        60.0  & 49.0   & 49.0     \\
+        70.0  & 53.0   & 53.0     \\
+        80.0  & 56.0   & 56.0     \\
+        90.0  & 59.0   & 59.0     \\
+        100.0 & 62.0   & 62.0     \\
+        110.0 & 64.0   & 64.0     \\
+        120.0 & 66.0   & 66.0     \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsubsection{Resultados}
+\begin{itemize}
+    \item Poblaci\'on de ciervos en $5$ a\~nos: $49$
+    \item Porcentaje de poblaci\'on de ciervos en $5$ a\~nos con respecto a $75: 65.33\%$
+    \item Poblaci\'on de ciervos en $10$ a\~nos: $66$
+    \item Porcentaje de poblaci\'on de ciervos en $10$ a\~nos con respecto a $75: 88.0\%$
+\end{itemize}
+
+\section{Bibliograf\'ia}
+\begin{itemize}
+    \item ``Ecuaciones Diferenciales y problemas con valores en la frontera. C\'omputo y modelado. Cuarta edici\'on'' C. Henry Edwards, David E. Penney
+\end{itemize}
+
+\end{document}
+
+
