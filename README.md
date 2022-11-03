@@ -31,7 +31,8 @@ Los métodos `Equal_To(a,b)`, `Great_Than(a,b)` y `Less_Than(a,b)` son métodos 
 
 El Método de Euler recibe diferentes parámetros que intervendrán en su funcionamiento, como lo es, la función que se quiere aproximar, valores iniciales de las variables x e y, el máximo del intervalo donde se hará la aproximación y dos varibales h y d que representan el tamaño de paso fijo (que será usado en cada paso) y el número de decimales al que será redondeado el valor resultante, respectivamente. La implementación del método utiliza la siguiente idea:
 
-$$x_{n+1}=x_n + h \\ y_{n+1}=y_n + h*f(x_n,y_n)$$
+$$x_{n+1}=x_n + h$$ 
+$$y_{n+1}=y_n + h*f(x_n,y_n)$$
 
 Finalmente se devuelven los resultados obtenidos en una lista de tuplas de la forma (x,y) que representan el valor de y en cada x.
 
