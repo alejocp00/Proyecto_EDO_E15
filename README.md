@@ -9,13 +9,13 @@
 
 ## Aspectos Generales
 
-El presente proyecto propone tres implementaciones computacionales de los siguientes métodos para aproximar soluciones de Ecuaciones Diferenciales: Método de Euler, Método de Euler Mejorado y   git config --global user.email Método de Runge-Kutta. Para ello se han aprovechado las facilidades que brinda el lenguaje de programación Python y dos de sus bibliotecas: pandas y prettytable.
+El presente proyecto propone tres implementaciones computacionales de los siguientes métodos para aproximar soluciones de Ecuaciones Diferenciales: Método de Euler, Método de Euler Mejorado y Método de Runge-Kutta. Para ello se han aprovechado las facilidades que brinda el lenguaje de programación Python y varias de sus bibliotecas: prettytable (para visualizar los resultados), enum (para mayor organización a la hora de seleccionar los métodos), collections.abc (para un mejor comentado de los métodos).
 
 ## Implementación
 
 En la primera sección de código se presentan métodos y variables globales que serán usadas a lo largo del proyecto.
 La variable "Epsilon" es una constante muy pequeña que servirá como apoyo para realizar operaciones de comparación de forma correcta.
-Los métodos "Equal_To", "Great_Than" y "Less_Than" son métodos de comparación: igual que, mayor que y menor que, respectivamente.
+Los métodos "Equal_To", "Great_Than" y "Less_Than" son métodos de comparación: igual que, mayor que y menor que, respectivamente. Dichos métodos fueron implementados de manera manual para evitar los posibles errores que trae consigo trabajar con números flotantes en computadoras.
 
 A continuación se presentan las implementaciones de los tres métodos de aproximación ya presentados.
 
@@ -83,12 +83,14 @@ Luego, si se toma $k=\frac{1}{6}(k_1+2k_2+2k_3+k_4)$ la ecuación toma la forma 
 
 ### Métodos Auxiliares
 
-En esta sección figuran los métodos Calculate_Values y Print_Table.
+En esta sección figuran los métodos Calculate_Values, Print_Table y Print_Deer_Info.
 
 El método Calculate_Values sirve de puente entre los datos y el propio método de aproximación que se utilizará. El método recibe los siguientes parámetros: la función con la que se estará trabajando, el método que se utilizará, los valores mínimo y máximo de x, así como el valor inicial de y; una lista de los diferentes tamaños de paso fijo (h) que se estarán considerando y la cantidad de decimales a redondear.
 Se devuelve una lista que contiene los valores obtenidos, usando el método especificado, para cada una de los diferentes valores del tamaño de paso fijo (h).
 
 El método Print_Table es el visualizador de los resultados obtenidos al aplicar uno de los métodos de aproximación a una función. Con la ayuda de la biblioteca de Python prettyTable, se logra imprimir una tabla donde quedan reflejados los valores de x e y.
+
+El método Print_Deer_Info se encarga de imprimir toda la información particular relacionada con el ejercicio 26 página 132.
 
 ## Ejercicios y resultados
 
@@ -102,21 +104,21 @@ de variar el tamaño de paso h. Las primas representan derivadas con respecto a 
 
   $y'= \frac{x}{1+y²},y(-1)=1;-1 \leq x \leq 1$
 
-#### Resultados método Euler
+#### Resultados método Euler mejorado
 
 | x | y(h=0.1) | y(h=0.02) | y(h=0.004) | y(h=0.0008) |
 |:---:|:---:|:---:|:---:|:---:|
-| -1.0 | 1 | 1 | 1 | 1 |
-| -0.8 | 0.90572 | 0.90569 | 0.90219 | 0.90149 |
-| -0.6 | 0.82574 | 0.82569 | 0.82285 | 0.82229 |
-| -0.4 | 0.76449 | 0.76443 | 0.76243 | 0.76204 |
-| -0.2 | 0.72593 | 0.72586 | 0.72483 | 0.72463 |
-| 0.0 | 0.71276 | 0.71268 | 0.7127 | 0.71271 |
-| 0.2 | 0.72595 | 0.72586 | 0.72692 | 0.72714 |
-| 0.4 | 0.76453 | 0.76443 | 0.76647 | 0.76688 |
-| 0.6 | 0.82579 | 0.82569 | 0.82856 | 0.82914 |
-| 0.8 | 0.90578 | 0.90569 | 0.90922 | 0.90993 |
-| 1.0 | 1.00006 | 1.0 | 1.0 | 1.0 |
+| -1.0 |    1     |     1     |     1      |      1      |
+| -0.8 | 0.90572  |  0.90569  |  0.90569   |   0.90569   |
+| -0.6 | 0.82574  |  0.82569  |  0.82569   |   0.82569   |
+| -0.4 | 0.76449  |  0.76443  |  0.76443   |   0.76443   |
+| -0.2 | 0.72593  |  0.72586  |  0.72586   |   0.72586   |
+| 0.0  | 0.71276  |  0.71268  |  0.71268   |   0.71268   |
+| 0.2  | 0.72595  |  0.72586  |  0.72586   |   0.72586   |
+| 0.4  | 0.76453  |  0.76443  |  0.76443   |   0.76443   |
+| 0.6  | 0.82579  |  0.82569  |  0.82569   |   0.82569   |
+| 0.8  | 0.90578  |  0.90569  |  0.90569   |   0.90569   |
+| 1.0  | 1.00006  |    1.0    |    1.0     |     1.0     |
 
 ### Ejercicio 24, Página 142
 
@@ -135,13 +137,13 @@ $y'= \frac{x}{1+y²},y(-1)=1;-1 \leq x \leq 1$
 #### Resultados método Runge-Kutta
 
 | x | y(h=0.2) | y(h=0.1) | y(h=0.05) | y(h=0.025) |
-|---|----------|----------|-----------|------------|
-| -1.0 | 1 | 1 | 1 | 1 |
-| -0.6 | 0.82569 | 0.825691 | 0.825691 | 0.825691 |
-| -0.2 | 0.725856 | 0.725856 | 0.725857 | 0.725857 |
-| 0.2 | 0.725856 | 0.725856 | 0.725857 | 0.725857 |
-| 0.6 | 0.82569 | 0.825691 | 0.825691 | 0.825691 |
-| 1.0 | 1 | 1 | 1 | 1 |
+|:---:|:---:|:---:|:---:|:---:|
+| -1.0 |    1     |    1     |     1     |     1      |
+| -0.6 | 0.82569  | 0.825691 |  0.825691 |  0.825691  |
+| -0.2 | 0.725856 | 0.725856 |  0.725857 |  0.725857  |
+| 0.2  | 0.725856 | 0.725856 |  0.725857 |  0.725857  |
+| 0.6  | 0.82569  | 0.825691 |  0.825691 |  0.825691  |
+| 1.0  |   1.0    |   1.0    |    1.0    |    1.0     |
 
 ### Ejercicio 26, página 132
 
@@ -157,26 +159,26 @@ los valores aproximados de P a números enteros de venados. ¿Qué
 porcentaje de la población límite de 75 venados se obtiene
 después de 5 años? ¿Después de 10 años?
 
-#### Resultados
+#### Resultados método Euler
 
 | x | y(h=1) | y(h=0.5) |
-|---|--------|----------|
-| 0.0 | 25 | 25 |
-| 10.0 | 29 | 29 |
-| 20.0 | 33 | 33 |
-| 30.0 | 37 | 37 |
-| 40.0 | 41 | 41 |
-| 50.0 | 45 | 45 |
-| 60.0 | 49 | 49 |
-| 70.0 | 53 | 53 |
-| 80.0 | 56 | 56 |
-| 90.0 | 59 | 59 |
-| 100.0 | 62 | 62 |
-| 110.0 | 64 | 64 |
-| 120.0 | 66 | 66 |
+|:---:|:---:|:---:|
+|  0.0  |   25   |    25    |
+|  10.0 |  29.0  |   29.0   |
+|  20.0 |  33.0  |   33.0   |
+|  30.0 |  37.0  |   37.0   |
+|  40.0 |  41.0  |   41.0   |
+|  50.0 |  45.0  |   45.0   |
+|  60.0 |  49.0  |   49.0   |
+|  70.0 |  53.0  |   53.0   |
+|  80.0 |  56.0  |   56.0   |
+|  90.0 |  59.0  |   59.0   |
+| 100.0 |  62.0  |   62.0   |
+| 110.0 |  64.0  |   64.0   |
+| 120.0 |  66.0  |   66.0   |
 
 - Población de ciervos en $5$ años: $49$
-- Porcentaje de población de ciervos en $5$ años con respecto a $75: 65.33%$
+- Porcentaje de población de ciervos en $5$ años con respecto a $75: 65.33\%$
 
 - Población de ciervos en $10$ años: $66$
-- Porcentaje de población de ciervos en 10 años con respecto a $75: 88.0%\$
+- Porcentaje de población de ciervos en $10$ años con respecto a $75: 88.0\%$
