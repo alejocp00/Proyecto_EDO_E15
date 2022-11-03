@@ -45,9 +45,9 @@ Recibe como parámetros la función que se quiere aproximar, los valores inicial
 
 El procedimiento se realiza como sigue:
 $$
-k_1=f(x_n,y_n)\\
-u_{n+1}= y_n + h*k_1\\
-k_2=f(x_{n+1},u_{n+1})\\
+k_1=f(x_n,y_n) \\
+u_{n+1}= y_n + h*k_1 \\
+k_2=f(x_{n+1},u_{n+1}) \\
 y_{n+1}=y_n+h*\frac{1}{2}(k_1+k_2)
 $$
 
